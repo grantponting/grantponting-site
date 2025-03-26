@@ -1,0 +1,28 @@
+{
+	"name": "backend",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy --env prod",
+		"dev": "wrangler dev --env dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.7.5",
+		"@cloudflare/workers-types": "^4.20250321.0",
+		"typescript": "^5.5.2",
+		"vitest": "~3.0.7",
+		"wrangler": "^4.4.0"
+	},
+	"dependencies": {
+		"@hono/swagger-ui": "^0.5.1",
+		"@prisma/adapter-d1": "^6.5.0",
+		"@prisma/client": "^6.5.0",
+		"bcryptjs": "^3.0.2",
+		"hono": "^4.7.5",
+		"hono-openapi": "^0.4.6",
+		"prisma": "^6.5.0"
+	}
+}
