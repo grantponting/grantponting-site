@@ -12,6 +12,20 @@ export interface Env {
 // Initialize the Hono app
 const app = new Hono();
 
+// Global CORS middleware
+app.use('*', async (c, next) => {
+	const { FRONTEND_URL } = c.env as { FRONTEND_URL: string };
+	c.header('Access-Control-Allow-Origin', FRONTEND_URL); // Change '*' to your allowed origin in production
+	c.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+	c.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+	if (c.req.method === 'OPTIONS') {
+		return c.text('OK', 200);
+	}
+
+	return next();
+});
+
 // Function to create a Prisma Client with Cloudflare D1 Adapter
 const createPrismaClient = (env: Env) => {
 	const adapter = new PrismaD1(env.DB);
