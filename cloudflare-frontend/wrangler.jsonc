@@ -1,6 +1,6 @@
 {
     "name": "grantponting-site",
-    "main": "dist/index.html",
+    "pages_build_output_dir": "dist/",
     "compatibility_date": "2025-03-21",
     "workers_dev": false,
     "route": {
