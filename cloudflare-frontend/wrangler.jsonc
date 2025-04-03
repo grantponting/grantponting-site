@@ -1,5 +1,11 @@
 {
     "name": "grantponting-site",
     "pages_build_output_dir": "dist",
-    "compatibility_date": "2025-03-21"
+    "compatibility_date": "2025-03-21",
+    "routes": [
+        {
+            "pattern": "grantponting.com",
+            "custom_domain": true
+        }
+    ]
 }
