@@ -1,10 +1,5 @@
 {
     "name": "grantponting-site",
     "pages_build_output_dir": "dist/",
-    "compatibility_date": "2025-03-21",
-    "workers_dev": false,
-    "route": {
-        "pattern": "grantponting.com/*",
-        "zone_id": "ab80f5ab7509866ab0e726bb61330a9a"
-    }
+    "compatibility_date": "2025-03-21"
 }
