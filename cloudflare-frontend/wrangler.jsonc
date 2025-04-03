@@ -1,5 +1,5 @@
 {
-    "name": "grantponting-frontend",
+    "name": "grantponting-site",
     "main": "dist/index.html",
     "compatibility_date": "2025-03-21",
     "workers_dev": false,
