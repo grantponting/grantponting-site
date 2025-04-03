@@ -27,7 +27,7 @@
 		"prod": {
 			"vars": {
 				"BASE_URL": "https://backend-prod.grantponting25.workers.dev/",
-				"FRONTEND_URL": ""
+				"FRONTEND_URL": "https://grantponting.com/"
 			},
 			"d1_databases": [
 				{
