@@ -7,5 +7,10 @@
             "pattern": "grantponting.com",
             "custom_domain": true
         }
-    ]
+    ],
+    "production": {
+        "vars": {
+            "REACT_APP_API_URL": "https://backend-prod.grantponting25.workers.dev/"
+        }
+    }
 }
