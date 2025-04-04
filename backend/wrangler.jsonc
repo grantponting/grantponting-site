@@ -26,8 +26,8 @@
 	"env": {
 		"prod": {
 			"vars": {
-				"BASE_URL": "https://backend-prod.grantponting25.workers.dev/",
-				"FRONTEND_URL": "https://grantponting.com/"
+				"BASE_URL": "https://api.grantponting.com",
+				"FRONTEND_URL": "https://grantponting.com"
 			},
 			"d1_databases": [
 				{
