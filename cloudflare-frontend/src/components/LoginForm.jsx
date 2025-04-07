@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DynamicForm from './DynamicForm';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState(null);
+    // const [setUser] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setUser(null);
+        // setUser(null);
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: 'POST',
@@ -21,53 +22,40 @@ const LoginForm = () => {
             if (!response.ok) {
                 setError(data.error || 'Login failed');
             } else {
-                setUser(data.user || data);
+                // setUser(data.user || data);
             }
-        } catch (err) {
-            setError('An error occurred while logging in.');
+        } catch {
+            setError('Failed to login');
         }
     };
 
+    const inputs = [
+        {
+            label: 'Email Address:',
+            type: 'email',
+            placeholder: 'Enter email',
+            value: email,
+            onChange: (e) => setEmail(e.target.value),
+            controlId: 'formGroupEmail'
+        },
+        {
+            label: 'Password:',
+            type: 'password',
+            placeholder: 'Password',
+            value: password,
+            onChange: (e) => setPassword(e.target.value),
+            controlId: 'formGroupPassword'
+        }
+    ];
+
     return (
-        <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '1rem', border: '1px solid #ccc' }}>
-            <h2>Login</h2>
-            {user && (
-                <div style={{ marginBottom: '1rem' }}>
-                    <h3>Welcome, {user.username}!</h3>
-                    <p>Email: {user.email}</p>
-                </div>
-            )}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Email:
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            style={{ width: '100%', padding: '0.5rem' }}
-                            required
-                        />
-                    </label>
-                </div>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={{ width: '100%', padding: '0.5rem' }}
-                            required
-                        />
-                    </label>
-                </div>
-                <button type="submit" style={{ padding: '0.5rem 1rem' }}>
-                    Login
-                </button>
-            </form>
-        </div>
+        <DynamicForm
+            title="Login"
+            inputs={inputs}
+            buttonText="Login"
+            onSubmit={handleSubmit}
+            error={error}
+        />
     );
 };
 

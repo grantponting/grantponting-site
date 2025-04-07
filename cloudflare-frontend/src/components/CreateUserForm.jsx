@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DynamicForm from './DynamicForm';
+import ErrorPopUp from './ErrorPopUp';
 
 const CreateUserForm = () => {
     const [username, setUsername] = useState('');
@@ -23,64 +25,56 @@ const CreateUserForm = () => {
             } else {
                 setUser(data);
             }
-        } catch (err) {
+        } catch {
             setError('An error occurred while creating the user.');
         }
     };
 
+    const inputs = [
+        {
+            label: 'Username:',
+            type: 'text',
+            placeholder: 'Enter username',
+            value: username,
+            onChange: (e) => setUsername(e.target.value),
+            required: true,
+            controlId: 'formUsername'
+        },
+        {
+            label: 'Email:',
+            type: 'email',
+            placeholder: 'Enter email',
+            value: email,
+            onChange: (e) => setEmail(e.target.value),
+            required: true,
+            controlId: 'formEmail'
+        },
+        {
+            label: 'Password:',
+            type: 'password',
+            placeholder: 'Enter password',
+            value: password,
+            onChange: (e) => setPassword(e.target.value),
+            required: true,
+            controlId: 'formPassword'
+        }
+    ];
+
     return (
-        <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '1rem', border: '1px solid #ccc' }}>
-            <h2>Create User</h2>
-            {user && (
-                <div style={{ marginBottom: '1rem' }}>
-                    <h3>User Created: {user.username}</h3>
-                    <p>Email: {user.email}</p>
-                </div>
-            )}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Username:
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            style={{ width: '100%', padding: '0.5rem' }}
-                            required
-                        />
-                    </label>
-                </div>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            style={{ width: '100%', padding: '0.5rem' }}
-                            required
-                        />
-                    </label>
-                </div>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={{ width: '100%', padding: '0.5rem' }}
-                            required
-                        />
-                    </label>
-                </div>
-                <button type="submit" style={{ padding: '0.5rem 1rem' }}>
-                    Create User
-                </button>
-            </form>
-        </div>
+        <>
+            <DynamicForm
+                title="Create User"
+                inputs={inputs}
+                buttonText="Create User"
+                onSubmit={handleSubmit}
+                error={error}
+            >
+                {user &&
+                    <ErrorPopUp errorMessage={user.email} errorTitle="User Created" variant='info' />
+                }
+            </DynamicForm>
+        </>
     );
-};
+}
 
 export default CreateUserForm;
