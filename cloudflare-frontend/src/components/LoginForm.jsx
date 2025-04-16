@@ -49,7 +49,7 @@ const LoginForm = () => {
             error={error}
         >
             {user &&
-                <ErrorPopUp errorMessage={user.email} errorTitle="User Created" variant='info' />
+                <ErrorPopUp errorMessage={user.email} errorTitle="Logged in Successfully" variant='info' />
             }
         </DynamicForm>
     );

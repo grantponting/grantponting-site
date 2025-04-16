@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const data = JSON.parse(response.request.response);
             localStorage.setItem('access_token', data.accessToken);
             localStorage.setItem('refresh_token', data.refreshToken);
-            alert('Logged in successfully!');
             setUser({ id: data.user_id, email: data.email });
         } catch (error) {
             console.error('Login error:', error);
@@ -72,7 +71,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     useEffect(() => {
         checkLoggedIn().finally(() => setIsLoading(false));
-    });
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, isLoggedIn: !!user, login, logout, checkLoggedIn }}>
