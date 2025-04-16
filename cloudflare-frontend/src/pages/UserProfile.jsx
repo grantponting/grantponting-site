@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '../api-client/api';
-import axiosInstance from '../authorizedApi';
+import axiosInstance from '../utils/authorizedApi';
 
 
 const UserProfile = () => {
