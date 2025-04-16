@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const data = JSON.parse(response.request.response);
             localStorage.setItem('access_token', data.accessToken);
             localStorage.setItem('refresh_token', data.refreshToken);
-            setUser({ id: data.user_id, email: data.email });
+            setUser({ id: data.user.id, email: data.user.email });
         } catch (error) {
             console.error('Login error:', error);
             throw error;
@@ -54,8 +54,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         let isLoggedIn = false;
         try {
             const response = await userApi.getProfile();
-            let data = (response.data as unknown as api.User[])[0];
-            setUser({ id: data.id, email: data.email });
+            let data = JSON.parse(response.request.response);
+            setUser({ id: data.user.id, email: data.user.emai });
             isLoggedIn = true;
         } catch (error) {
             console.error('There was an error fetching the items!', error);
