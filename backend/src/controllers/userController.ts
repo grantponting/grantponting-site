@@ -56,7 +56,7 @@ export const deleteUser = async (c: Context) => {
 
 export const getProfile = async (c: Context) => {
     // Retrieve the decoded token from the context, which should contain the user id.
-    const decoded = c.get("user") as { id: string; email: string };
+    const decoded = c.get("jwtPayload") as { id: string; email: string };
 
     if (!decoded || !decoded.id) {
         return c.json({ error: "User not authenticated" }, 401);

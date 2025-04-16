@@ -41,8 +41,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             }
 
             const data = JSON.parse(response.request.response);
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
+            localStorage.setItem('access_token', data.accessToken);
+            localStorage.setItem('refresh_token', data.refreshToken);
             alert('Logged in successfully!');
             setUser({ id: data.user_id, email: data.email });
         } catch (error) {
