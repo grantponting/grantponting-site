@@ -23,6 +23,7 @@
 		"bcryptjs": "^3.0.2",
 		"hono": "^4.7.5",
 		"hono-openapi": "^0.4.6",
+		"jsonwebtoken": "^9.0.2",
 		"prisma": "^6.5.0"
 	}
 }

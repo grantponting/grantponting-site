@@ -11,7 +11,10 @@
 		"deploy": "npm run build && wrangler pages deploy"
 	},
 	"dependencies": {
+		"@openapitools/openapi-generator-cli": "^2.18.4",
+		"axios": "^1.8.4",
 		"bootstrap": "^5.3.5",
+		"jwt-decode": "^4.0.0",
 		"react": "^18.3.1",
 		"react-bootstrap": "^2.10.9",
 		"react-dom": "^18.3.1",

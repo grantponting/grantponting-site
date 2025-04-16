@@ -1,29 +1,21 @@
 import { useState } from 'react';
 import DynamicForm from './DynamicForm';
+import ErrorPopUp from './ErrorPopUp';
+import { useAuth } from '../contexts/authContext';
 
 const LoginForm = () => {
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    // const [setUser] = useState(null);
+    const { user, login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        // setUser(null);
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await response.json();
 
-            if (!response.ok) {
-                setError(data.error || 'Login failed');
-            } else {
-                // setUser(data.user || data);
-            }
+        try {
+            await login({ email: email, password: password })
         } catch {
             setError('Failed to login');
         }
@@ -55,7 +47,11 @@ const LoginForm = () => {
             buttonText="Login"
             onSubmit={handleSubmit}
             error={error}
-        />
+        >
+            {user &&
+                <ErrorPopUp errorMessage={user.email} errorTitle="User Created" variant='info' />
+            }
+        </DynamicForm>
     );
 };
 

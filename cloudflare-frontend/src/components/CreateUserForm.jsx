@@ -13,6 +13,7 @@ const CreateUserForm = () => {
         e.preventDefault();
         setError('');
         setUser(null);
+
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
                 method: 'POST',

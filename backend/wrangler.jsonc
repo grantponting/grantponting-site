@@ -5,7 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "backend",
-	"main": "src/index.ts",
+	"main": "src/app.ts",
 	"compatibility_date": "2025-03-21",
 	"observability": {
 		"enabled": true
@@ -40,7 +40,8 @@
 		"dev": {
 			"vars": {
 				"BASE_URL": "http://localhost:8787",
-				"FRONTEND_URL": "http://localhost:3000"
+				"FRONTEND_URL": "http://localhost:3000",
+				"JWT_SECRET": "dev",
 			},
 			"d1_databases": [
 				{
