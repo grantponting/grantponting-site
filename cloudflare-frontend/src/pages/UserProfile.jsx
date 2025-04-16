@@ -17,12 +17,11 @@ const UserProfile = () => {
         // Function to fetch user data from the API
         const fetchUser = async () => {
             try {
-                // Update with your API URL as needed
+                if (!id) throw new Error("Missing user ID from URL");
+
                 const response = await userApi.getUserById(id);
-                if (!response.ok) {
-                    throw new Error('User not found');
-                }
-                const data = await response.json();
+
+                const data = response.data;
                 setUserData(data);
             } catch (err) {
                 setError(err.message);
