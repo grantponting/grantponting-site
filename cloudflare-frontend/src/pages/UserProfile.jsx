@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 import * as api from '../api-client/api';
 import axiosInstance from '../utils/authorizedApi';
 
+// Note: Axios Instance needs to be updated for authorized calls
+const userApi = api.DefaultApiFactory(undefined, undefined, axiosInstance);
 
 const UserProfile = () => {
-    // Note: Axios Instance needs to be updated for authorized calls
-    const userApi = api.DefaultApiFactory(undefined, undefined, axiosInstance);
-
     // Get the user id from the URL parameters
     const { id } = useParams();
     const [userData, setUserData] = useState(null);
@@ -29,7 +28,7 @@ const UserProfile = () => {
         };
 
         fetchUser();
-    }, [id, userApi]);
+    }, [id]);
 
     if (error) return <div>Error: {error}</div>;
     if (!userData) return <div>Loading user data...</div>;
