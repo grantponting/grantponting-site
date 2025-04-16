@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
                 isRefreshing = true;
                 try {
                     const tokenApi = api.DefaultApiFactory();
-                    const body: api.PostRefreshRequest = { refreshToken };
+                    const body: api.PostRefreshRequest = { refreshToken: refreshToken };
                     const refreshResponse = await tokenApi.postRefresh(body);
 
                     const newAccessToken = refreshResponse.data.accessToken || '';
@@ -43,6 +43,7 @@ axiosInstance.interceptors.response.use(
 
                     // Set header and retry original request
                     originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    console.log(originalRequest.headers)
                     isRefreshing = false;
                     return axiosInstance(originalRequest);
                 } catch (refreshError) {
