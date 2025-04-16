@@ -3,6 +3,7 @@ import * as api from '../api-client/api';
 
 // Create a custom Axios instance
 const axiosInstance = axios.create();
+let isRefreshing = false;
 
 // Add an interceptor to attach the Authorization header
 axiosInstance.interceptors.request.use(
@@ -22,30 +23,37 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response) => response, // Forward successful responses
     async (error) => {
-        if (error.response?.status === 401) {
-            // Access token might be expired; try refreshing
+        const originalRequest = error.config;
+
+        // Prevent infinite loop
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+
             const refreshToken = localStorage.getItem('refresh_token');
-            const accessToken = localStorage.getItem('access_token');
-            if (refreshToken && accessToken) {
+
+            if (refreshToken && !isRefreshing) {
+                isRefreshing = true;
                 try {
-                    let tokenApi = api.DefaultApiFactory();
-                    let body: api.PostRefreshRequest = {
-                        refreshToken: refreshToken,
-                    }
+                    const tokenApi = api.DefaultApiFactory();
+                    const body: api.PostRefreshRequest = { refreshToken };
                     const refreshResponse = await tokenApi.postRefresh(body);
+
                     const newAccessToken = refreshResponse.data.accessToken || '';
                     localStorage.setItem('access_token', newAccessToken);
 
-                    // Retry the original request with the new access token
-                    error.config.headers['Authorization'] = `Bearer ${newAccessToken}`;
-                    return axiosInstance.request(error.config);
+                    // Set header and retry original request
+                    originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    isRefreshing = false;
+                    return axiosInstance(originalRequest);
                 } catch (refreshError) {
-                    console.error('Failed to refresh token:', refreshError);
+                    console.error('Token refresh failed:', refreshError);
                     localStorage.removeItem('access_token');
                     localStorage.removeItem('refresh_token');
+                    isRefreshing = false;
                 }
             }
         }
+
         return Promise.reject(error);
     }
 );
