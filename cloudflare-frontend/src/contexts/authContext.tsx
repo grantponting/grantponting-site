@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         try {
             const response = await userApi.getProfile();
             let data = JSON.parse(response.request.response);
-            setUser({ id: data.user.id, email: data.user.emai });
+            setUser({ id: data.id, email: data.email });
             isLoggedIn = true;
         } catch (error) {
             console.error('There was an error fetching the items!', error);

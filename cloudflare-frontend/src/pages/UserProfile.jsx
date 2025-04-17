@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '../api-client/api';
 import axiosInstance from '../utils/authorizedApi';
+import UpdateUserForm from '../components/UpdateUserForm';
 
 // Note: Axios Instance needs to be updated for authorized calls
 const userApi = api.DefaultApiFactory(undefined, undefined, axiosInstance);
@@ -38,6 +39,7 @@ const UserProfile = () => {
             <h1>{userData.username}s Profile</h1>
             <p>Email: {userData.email}</p>
             {/* Display additional user information as needed */}
+            <UpdateUserForm />
         </div>
     );
 };

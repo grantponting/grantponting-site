@@ -156,6 +156,43 @@ router.delete(
     UserController.deleteUser
 );
 
+router.post(
+    "/users/search",
+    authMiddleware,
+    describeRoute({
+        summary: "Search users by criteria",
+        description: "Fetches users whose email or username match the provided body.",
+        requestBody: {
+            description: "Search filters",
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        properties: {
+                            email: { type: "string", format: "email" },
+                            username: { type: "string" }
+                        },
+                        required: [], // allow either or both
+                    },
+                },
+            },
+        },
+        responses: {
+            200: {
+                description: "List of matching users",
+                content: {
+                    "application/json": {
+                        schema: { type: "array", items: { $ref: "#/components/schemas/User" } },
+                    },
+                },
+            },
+        },
+    }),
+    UserController.searchUser
+);
+
+
 router.get(
     "/profile",
     authMiddleware,  // Ensure the auth token is validated first

@@ -1,9 +1,16 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import type { Context } from "hono";
+import { jwtDecode } from "jwt-decode";
 import { createPrismaClient } from "../config/database";
 import { signAccessToken, signRefreshToken } from "../utils/jwt";
+
 import type { Env } from "../app";
+import type { Context } from "hono";
+
+export interface jwtPayload {
+    id: string;
+    email: string;
+}
 
 // Controller functions to be used in routes
 export const getAllUsers = async (c: Context) => {
@@ -55,8 +62,15 @@ export const deleteUser = async (c: Context) => {
 };
 
 export const getProfile = async (c: Context) => {
+    const authHeader = c.req.header('Authorization') || '';
+    const [scheme, token] = authHeader.split(' ')
+
+    if (scheme !== 'Bearer' || !token) {
+        return c.text('Unauthorized', 401)
+    }
+
     // Retrieve the decoded token from the context, which should contain the user id.
-    const decoded = c.get("jwtPayload") as { id: string; email: string };
+    const decoded = jwtDecode<jwtPayload>(token);
 
     if (!decoded || !decoded.id) {
         return c.json({ error: "User not authenticated" }, 401);
@@ -75,6 +89,18 @@ export const getProfile = async (c: Context) => {
 
     // Return the user's data.
     return c.json(user, 200);
+}
+
+export const searchUser = async (c: Context) => {
+    const prisma = createPrismaClient(c.env as any);
+    const { email, username } = await c.req.json();
+
+    const where: any = {};
+    if (email) where.email = email;
+    if (username) where.username = { contains: username, mode: "insensitive" };
+
+    const users = await prisma.user.findMany({ where });
+    return c.json(users);
 }
 
 export const loginUser = async (c: Context) => {
