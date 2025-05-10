@@ -7,6 +7,8 @@ import { Container, Spinner } from 'react-bootstrap';
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('../pages/Login'));
 const UserProfile = lazy(() => import('../pages/UserProfile'));
+const TestService = lazy(() => import('../pages/TestService'));
+
 
 const AppRoutes = () => (
     <Suspense
@@ -18,11 +20,12 @@ const AppRoutes = () => (
             </Container>
         }
     >
-        <Container className="my-4" data-bs-theme="dark">
+        <Container className="my-4">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="login" element={<Login />} />
                 <Route path="profile/:id" element={<UserProfile />} />
+                <Route path="test-service" element={<TestService />} />
             </Routes>
         </Container>
     </Suspense>

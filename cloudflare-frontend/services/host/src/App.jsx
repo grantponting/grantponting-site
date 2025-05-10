@@ -7,11 +7,13 @@ import './css/global.css'
 
 const App = () => {
   return (
-    <div className='bg-dark text-light min-vh-100'>
+    <div className='bg-dark text-white min-vh-100' data-bs-theme="dark">
       <AuthProvider>
         <BrowserRouter>
           <Header />
-          <AppRoutes />
+          <main style={{ marginTop: '70px' }}>
+            <AppRoutes />
+          </main>
         </BrowserRouter>
       </AuthProvider>
     </div>

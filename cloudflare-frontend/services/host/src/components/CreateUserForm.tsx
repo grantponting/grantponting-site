@@ -1,13 +1,19 @@
+import React from 'react';
 import { useState } from 'react';
 import DynamicForm from './DynamicForm';
 import ErrorPopUp from './ErrorPopUp';
+import * as api from '../api-client/api';
+import { useAuth } from '../contexts/authContext';
+import { User } from '../api-client/api';
 
 const CreateUserForm = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
+    const userApi = api.DefaultApiFactory();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,17 +21,21 @@ const CreateUserForm = () => {
         setUser(null);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, email }),
-            });
-            const data = await response.json();
-            if (!response.ok) {
-                setError(data.error || 'Error creating user.');
-            } else {
-                setUser(data);
+            const body: api.PostUserRequest = {
+                username: username,
+                password: password,
+                email: email
             }
+
+            const response = await userApi.postUser(body);
+
+            if (response.status !== 200) {
+                throw new Error('Invalid credentials');
+            }
+
+            setUser(response.data);
+
+            await login({ email: email, password: password });
         } catch {
             setError('An error occurred while creating the user.');
         }
