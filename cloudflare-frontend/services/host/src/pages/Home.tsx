@@ -4,7 +4,7 @@ import {
   Container, Row, Col,
   Card, ProgressBar, Form, Button
 } from 'react-bootstrap';
-import { FaPython, FaJs, FaGitAlt, FaGithub, FaCogs, FaTools, FaWrench } from 'react-icons/fa';
+import { FaPython, FaJs, FaGitAlt, FaGithub, FaCogs, FaTools, FaWrench, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
 import { SiCypress, SiTypescript, SiJira, SiYaml, SiPytest, SiK6, SiTestrail } from 'react-icons/si';
 
 const ResumePage = () => {
@@ -200,27 +200,17 @@ const ResumePage = () => {
       <section id="contact" className="py-5">
         <Container>
           <h2>Contact</h2>
-          <Form action="mailto:grantponting@proton.me" method="post" encType="text/plain">
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" placeholder="Your Name" required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="you@example.com" required />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Form.Group className="mb-3">
-              <Form.Label>Message</Form.Label>
-              <Form.Control as="textarea" rows={4} required />
-            </Form.Group>
-            <Button type="submit">Send Message</Button>
-          </Form>
+          <p>If you'd like to connect, feel free to reach out via any of the methods below:</p>
+          <ul className="list-unstyled">
+            <li className="mb-2">
+              <FaEnvelope className="me-2" />
+              <a href="mailto:grantponting@proton.me">grantponting@proton.me</a>
+            </li>
+            <li className="mb-2">
+              <FaPhoneAlt className="me-2" />
+              <a href="tel:9518138068">(951) 813-8068</a>
+            </li>
+          </ul>
         </Container>
       </section>
     </>
