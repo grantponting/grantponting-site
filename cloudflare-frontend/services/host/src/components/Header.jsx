@@ -12,7 +12,7 @@ const Header = () => {
             <Container>
                 <Navbar.Brand href="/">
                     <img
-                        src="./src/assets/GP_1.png"
+                        src="/assets/GP_1.png"
                         alt=""
                         width="35"
                         height="35"
