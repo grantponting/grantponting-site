@@ -9,7 +9,7 @@ export default defineConfig({
     federation({
       name: 'host',
       remotes: {
-        test: 'http://localhost:5001/assets/remoteEntry.js',
+        test: 'grantponting-site-test-service.pages.dev/assets/remoteEntry.js',
       },
       shared: ['react', 'react-dom']
     })
