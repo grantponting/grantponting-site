@@ -8,6 +8,7 @@ const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('../pages/Login'));
 const UserProfile = lazy(() => import('../pages/UserProfile'));
 const TestService = lazy(() => import('../pages/TestService'));
+const AutomationTest = lazy(() => import('../pages/AutomationTest'));
 
 
 const AppRoutes = () => (
@@ -24,6 +25,7 @@ const AppRoutes = () => (
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="login" element={<Login />} />
+                <Route path="automation-test" element={<AutomationTest />} />
                 <Route path="profile/:id" element={<UserProfile />} />
                 <Route path="test-service" element={<TestService />} />
             </Routes>

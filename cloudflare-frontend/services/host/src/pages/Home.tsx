@@ -4,8 +4,10 @@ import {
   Container, Row, Col,
   Card, ProgressBar, Form, Button
 } from 'react-bootstrap';
-import { FaPython, FaJs, FaGitAlt, FaGithub, FaCogs, FaTools, FaWrench, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
-import { SiCypress, SiTypescript, SiJira, SiYaml, SiPytest, SiK6, SiTestrail } from 'react-icons/si';
+import { FaPython, FaJs, FaGitAlt, FaGithub, FaCogs, FaTools, FaWrench, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin, FaDatabase, FaReact, FaBolt, FaCode } from 'react-icons/fa';
+import { SiCypress, SiTypescript, SiJira, SiYaml, SiPytest, SiK6, SiTestrail, SiDjango } from 'react-icons/si';
+import ProjectCard from '../components/ProjectCard';
+import { ProjectCardProps } from '../components/ProjectCard';
 
 const ResumePage = () => {
   return (
@@ -118,18 +120,21 @@ const ResumePage = () => {
             {[
               {
                 title: 'Microservice Architecture Proof-of-Concept',
-                link: '/test-service',
-                desc: 'Designed and implemented a modular microservice-based architecture to showcase service isolation and scalability. Demonstrated CI/CD integration and service-to-service communication patterns. Deployed as a working proof of concept on this site for exploration and demonstration.'
+                trylink: '/test-service',
+                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/cloudflare-frontend/services',
+                desc: 'Designed and implemented a modular microservice-based architecture to showcase service isolation and scalability. Demonstrated CI/CD integration and service-to-service communication patterns.',
+                details: 'The microservice is implemented as a standalone React application using Vite with module federation for dynamic code sharing. It is deployed and served via Cloudflare.',
               },
+              {
+                title: 'Basic Login',
+                tryLink: '/login',
+                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/backend',
+                desc: 'Designed and set up a basic login. Demonstrated ability to set up and utilize backend architecture.',
+                details: 'When a new user registers, their username and email are stored in a Cloudflare-hosted database, and their password is securely hashed before being saved. The backend is built with Hono, providing lightweight and fast routing. Once logged in, users are able to view a profile page where they can edit the usernames of other existing users. The users login is persisted using access and refresh tokens that the backend verifies and sends out using jwt tokens.'
+              }
             ].map((proj, i) => (
               <Col md={6} key={i} className="mb-4">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{proj.title}</Card.Title>
-                    <Card.Text>{proj.desc}</Card.Text>
-                    <Card.Link href={proj.link}>View Details</Card.Link>
-                  </Card.Body>
-                </Card>
+                <ProjectCard {...proj} />
               </Col>
             ))}
           </Row>
@@ -149,6 +154,13 @@ const ResumePage = () => {
                 <li><FaPython className="me-2" /> Python</li>
                 <li><SiYaml className="me-2" /> YAML</li>
                 <li><FaCogs className="me-2" /> C#</li>
+                <li><FaDatabase className="me-2" /> SQL</li>
+              </ul>
+
+              <h5 className="mt-4">Frontend Tools</h5>
+              <ul className="list-unstyled">
+                <li><FaReact className="me-2" /> React</li>
+                <li><FaBolt className="me-2" /> Vite</li>
               </ul>
 
               <h5 className="mt-4">Testing Frameworks</h5>
@@ -162,6 +174,12 @@ const ResumePage = () => {
               </ul>
             </Col>
             <Col md={6}>
+              <h5>Backend & Frameworks</h5>
+              <ul className="list-unstyled">
+                <li><FaCode className="me-2" /> Hono</li>
+                <li><SiDjango className="me-2" /> Django</li>
+              </ul>
+
               <h5>DevOps & Tools</h5>
               <ul className="list-unstyled">
                 <li><FaGithub className="me-2" /> GitHub Actions</li>

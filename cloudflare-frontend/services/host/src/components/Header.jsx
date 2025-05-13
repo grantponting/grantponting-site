@@ -30,6 +30,7 @@ const Header = () => {
                         {isLoggedIn &&
                             <Nav.Link href={`/profile/${user?.id || "invalid_user"}`}>User Profile</Nav.Link>
                         }
+                        <Nav.Link href="/automation-test">Automation Test</Nav.Link>
                         <NavDropdown title="Projects" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/test-service">Microservices Test</NavDropdown.Item>
                         </NavDropdown>
