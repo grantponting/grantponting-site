@@ -120,7 +120,7 @@ const ResumePage = () => {
             {[
               {
                 title: 'Microservice Architecture Proof-of-Concept',
-                trylink: '/test-service',
+                tryLink: '/test-service',
                 codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/cloudflare-frontend/services',
                 desc: 'Designed and implemented a modular microservice-based architecture to showcase service isolation and scalability. Demonstrated CI/CD integration and service-to-service communication patterns.',
                 details: 'The microservice is implemented as a standalone React application using Vite with module federation for dynamic code sharing. It is deployed and served via Cloudflare.',
