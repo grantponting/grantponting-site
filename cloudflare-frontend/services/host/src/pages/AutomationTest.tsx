@@ -27,13 +27,13 @@ function AutomationTest() {
             </Row>
             <Row className="justify-content-md-center mt-5">
                 {!isModalOpen &&
-                    <Button onClick={() => setModalOpen(true)}>
+                    <Button data-test-id='open_btn' className='btn-info' onClick={() => setModalOpen(true)}>
                         Open Modal
                     </Button>
                 }
                 <Modal open={isModalOpen} onClose={() => setModalOpen(false)}>
                     Test Modal
-                    <Button onClick={() => setModalOpen(false)}>
+                    <Button data-test-id='modal_btn' className='btn-info' onClick={() => setModalOpen(false)}>
                         Close
                     </Button>
                 </Modal>

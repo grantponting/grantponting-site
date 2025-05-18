@@ -23,7 +23,7 @@ function Login() {
             {accountCreated &&
                 <Row className="justify-content-md-center mt-5">
                     <LoginForm />
-                    <a onClick={handleClick} className="link-underline-secondary">
+                    <a onClick={handleClick} className="link-info">
                         New User? Create Account Here
                     </a>
                 </Row>

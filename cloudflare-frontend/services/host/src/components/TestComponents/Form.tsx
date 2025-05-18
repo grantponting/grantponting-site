@@ -26,8 +26,9 @@ export default function Form() {
                     setName(e.target.value);
                 }
                 }
+                data-test-id='form_input'
             />
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button data-test-id='submit_btn' className='btn-info' onClick={handleSubmit}>Submit</Button>
             {error && <Container> {error}</Container>}
             {submitted && <Container>Thank you, {name}!</Container>}
         </Container>

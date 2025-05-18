@@ -6,11 +6,13 @@ export default function Counter() {
 
     return (
         <Container>
-            Count: {count}
-            <Button onClick={() => setCount(count + 1)}>
+            <text data-test-id='count_text'>
+                Count: {count}
+            </text>
+            <Button data-test-id='increment_btn' className='btn-info' onClick={() => setCount(count + 1)}>
                 Increment
             </Button>
-            < Button onClick={() => setCount(count - 1)}>
+            < Button data-test-id='decrement_btn' className='btn-info' onClick={() => setCount(count - 1)}>
                 Decrement
             </Button>
         </Container>

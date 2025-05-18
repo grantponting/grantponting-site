@@ -14,7 +14,7 @@ const AutomationTest = lazy(() => import('../pages/AutomationTest'));
 const AppRoutes = () => (
     <Suspense
         fallback={
-            <Container className="text-center my-5">
+            <Container className="text-center my-2">
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading page...</span>
                 </Spinner>

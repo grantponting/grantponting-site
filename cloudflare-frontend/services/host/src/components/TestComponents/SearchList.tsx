@@ -15,6 +15,7 @@ export default function SearchList() {
                 placeholder="Search..."
                 value={query}
                 onChange={e => setQuery(e.target.value)}
+                data-test-id='search_input'
             />
             <ul>
                 {filtered.map((item, idx) => (

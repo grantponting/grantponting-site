@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import {
   Container, Row, Col,
-  Card, ProgressBar, Form, Button
+  Card, Nav
 } from 'react-bootstrap';
 import { FaPython, FaJs, FaGitAlt, FaGithub, FaCogs, FaTools, FaWrench, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin, FaDatabase, FaReact, FaBolt, FaCode } from 'react-icons/fa';
 import { SiCypress, SiTypescript, SiJira, SiYaml, SiPytest, SiK6, SiTestrail, SiDjango } from 'react-icons/si';
@@ -18,14 +18,14 @@ const ResumePage = () => {
           <h1 className="display-4">Grant Ponting</h1>
           <p className="lead">Full-Stack Developer with an Emphasis in QA</p>
           <div>
-            <a href="/grant_resume.pdf" className="btn btn-primary me-2">Download CV</a>
-            <a href="#contact" className="btn btn-outline-primary">Contact Me</a>
+            <a href="/grant_resume.pdf" className="btn btn-info me-2">Download CV</a>
+            <a href="#contact" className="btn btn-outline-info">Contact Me</a>
           </div>
         </Container>
       </section>
 
       {/* About */}
-      <section id="about" className="py-5">
+      <section id="about" className="py-3">
         <Container>
           <h2>About Me</h2>
           <p>
@@ -36,113 +36,8 @@ const ResumePage = () => {
         </Container>
       </section>
 
-      {/* Experience */}
-      <section id="experience" className="py-5">
-        <Container>
-          <h2>Experience</h2>
-          <Row>
-            {[
-              {
-                role: 'QA Engineer',
-                company: 'QualityLogic',
-                period: 'Dec 2021 – Present',
-                desc: 'Created and maintained UI, API, and mobile automation tests using Playwright, Cypress, Pytest, and Detox. Built and maintained CI/CD pipelines using GitHub Actions and Azure DevOps. Developed reusable Page Object Model codebases and performance/load tests with K6.'
-              },
-              {
-                role: 'Test Technician',
-                company: 'QualityLogic',
-                period: 'Feb 2020 – Dec 2021',
-                desc: 'Manually and exploratorily tested websites. Created and maintained test cases using Jira, Zephyr, and Testrail.'
-              }
-            ].map((job, i) => (
-              <Col md={6} key={i} className="mb-4">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{job.role} @ {job.company}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{job.period}</Card.Subtitle>
-                    <Card.Text>{job.desc}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      {/* Professional Accomplishments */}
-      <section id="accomplishments" className="py-5">
-        <Container>
-          <h2>Professional Accomplishments</h2>
-          <Row>
-            {[
-              {
-                title: 'Modular QA Automation Framework',
-                role: 'QA Engineer, QualityLogic',
-                highlights: [
-                  'Designed and implemented a modular Page Object Model framework using Playwright and Pytest.',
-                  'Integrated the framework into CI/CD pipelines using GitHub Actions and Azure DevOps.',
-                  'Reduced test runtime by 40% through test prioritization and parallelization.',
-                  'Abstracted reusable components for ease of onboarding and cross-project reuse.'
-                ]
-              },
-              {
-                title: 'Mobile App Automation Suite',
-                role: 'QA Engineer, QualityLogic',
-                highlights: [
-                  'Built and maintained mobile automation tests using Detox for React Native apps.',
-                  'Collaborated with developers to identify flaky test patterns and refactor UI flow validation.'
-                ]
-              }
-            ].map((item, idx) => (
-              <Col md={6} key={idx} className="mb-4">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{item.role}</Card.Subtitle>
-                    <ul className="mt-3">
-                      {item.highlights.map((point, i) => (
-                        <li key={i}>{point}</li>
-                      ))}
-                    </ul>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      {/* Projects */}
-      <section id="projects" className="py-5">
-        <Container>
-          <h2>Projects</h2>
-          <Row>
-            {[
-              {
-                title: 'Microservice Architecture Proof-of-Concept',
-                tryLink: '/test-service',
-                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/cloudflare-frontend/services',
-                desc: 'Designed and implemented a modular microservice-based architecture to showcase service isolation and scalability. Demonstrated CI/CD integration and service-to-service communication patterns.',
-                details: 'The microservice is implemented as a standalone React application using Vite with module federation for dynamic code sharing. It is deployed and served via Cloudflare.',
-              },
-              {
-                title: 'Basic Login',
-                tryLink: '/login',
-                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/backend',
-                desc: 'Designed and set up a basic login. Demonstrated ability to set up and utilize backend architecture.',
-                details: 'When a new user registers, their username and email are stored in a Cloudflare-hosted database, and their password is securely hashed before being saved. The backend is built with Hono, providing lightweight and fast routing. Once logged in, users are able to view a profile page where they can edit the usernames of other existing users. The users login is persisted using access and refresh tokens that the backend verifies and sends out using jwt tokens.'
-              }
-            ].map((proj, i) => (
-              <Col md={6} key={i} className="mb-4">
-                <ProjectCard {...proj} />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
       {/* Skills */}
-      <section id="skills" className="py-5">
+      <section id="skills" className="py-3">
         <Container>
           <h2>Skills</h2>
           <Row>
@@ -198,8 +93,113 @@ const ResumePage = () => {
         </Container>
       </section>
 
+      {/* Projects */}
+      <section id="projects" className="py-3">
+        <Container>
+          <h2>Projects</h2>
+          <Row>
+            {[
+              {
+                title: 'Microservice Architecture Proof-of-Concept',
+                tryLink: '/test-service',
+                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/cloudflare-frontend/services',
+                desc: 'Designed and implemented a modular microservice-based architecture to showcase service isolation and scalability. Demonstrated CI/CD integration and service-to-service communication patterns.',
+                details: 'The microservice is implemented as a standalone React application using Vite with module federation for dynamic code sharing. It is deployed and served via Cloudflare.',
+              },
+              {
+                title: 'Basic Login',
+                tryLink: '/login',
+                codeLink: 'https://github.com/grantponting/grantponting-site/tree/master/backend',
+                desc: 'Designed and set up a basic login. Demonstrated ability to set up and utilize backend architecture.',
+                details: 'When a new user registers, their username and email are stored in a Cloudflare-hosted database, and their password is securely hashed before being saved. The backend is built with Hono, providing lightweight and fast routing. Once logged in, users are able to view a profile page where they can edit the usernames of other existing users. The users login is persisted using access and refresh tokens that the backend verifies and sends out using jwt tokens.'
+              }
+            ].map((proj, i) => (
+              <Col md={6} key={i} className="mb-4">
+                <ProjectCard {...proj} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="py-3">
+        <Container>
+          <h2>Experience</h2>
+          <Row>
+            {[
+              {
+                role: 'QA Engineer',
+                company: 'QualityLogic',
+                period: 'Dec 2021 – Present',
+                desc: 'Created and maintained UI, API, and mobile automation tests using Playwright, Cypress, Pytest, and Detox. Built and maintained CI/CD pipelines using GitHub Actions and Azure DevOps. Developed reusable Page Object Model codebases and performance/load tests with K6.'
+              },
+              {
+                role: 'Test Technician',
+                company: 'QualityLogic',
+                period: 'Feb 2020 – Dec 2021',
+                desc: 'Manually and exploratorily tested websites. Created and maintained test cases using Jira, Zephyr, and Testrail.'
+              }
+            ].map((job, i) => (
+              <Col md={6} key={i} className="mb-4">
+                <Card>
+                  <Card.Body>
+                    <Card.Title>{job.role} @ {job.company}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{job.period}</Card.Subtitle>
+                    <Card.Text>{job.desc}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Professional Accomplishments */}
+      <section id="accomplishments" className="py-3">
+        <Container>
+          <h2>Professional Accomplishments</h2>
+          <Row>
+            {[
+              {
+                title: 'Modular QA Automation Framework',
+                role: 'QA Engineer, QualityLogic',
+                highlights: [
+                  'Designed and implemented a modular Page Object Model framework using Playwright and Pytest.',
+                  'Integrated the framework into CI/CD pipelines using GitHub Actions and Azure DevOps.',
+                  'Reduced test runtime by 40% through test prioritization and parallelization.',
+                  'Abstracted reusable components for ease of onboarding and cross-project reuse.'
+                ]
+              },
+              {
+                title: 'Mobile App Automation Suite',
+                role: 'QA Engineer, QualityLogic',
+                highlights: [
+                  'Built and maintained mobile automation tests using Detox for React Native apps.',
+                  'Collaborated with developers to identify flaky test patterns and refactor UI flow validation.'
+                ]
+              }
+            ].map((item, idx) => (
+              <Col md={6} key={idx} className="mb-4">
+                <Card>
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{item.role}</Card.Subtitle>
+                    <ul className="mt-3">
+                      {item.highlights.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
       {/* Education */}
-      <section id="education" className="py-5">
+      <section id="education" className="py-3">
         <Container>
           <h2>Education</h2>
           <p>
@@ -215,20 +215,18 @@ const ResumePage = () => {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-5">
+      <section id="contact" className="py-3">
         <Container>
           <h2>Contact</h2>
           <p>If you'd like to connect, feel free to reach out via any of the methods below:</p>
-          <ul className="list-unstyled">
-            <li className="mb-2">
-              <FaEnvelope className="me-2" />
-              <a href="mailto:grantponting@proton.me">grantponting@proton.me</a>
-            </li>
-            <li className="mb-2">
-              <FaPhoneAlt className="me-2" />
-              <a href="tel:9518138068">(951) 813-8068</a>
-            </li>
-          </ul>
+          <Nav className="flex-column">
+            <Nav.Link href="mailto:grantponting@proton.me" className='link-info'>
+              <FaEnvelope className="me-2" /> grantponting@proton.me
+            </Nav.Link>
+            <Nav.Link href="tel:9518138068" className='link-info'>
+              <FaPhoneAlt className="me-2" /> (951) 813-8068
+            </Nav.Link>
+          </Nav>
         </Container>
       </section>
     </>

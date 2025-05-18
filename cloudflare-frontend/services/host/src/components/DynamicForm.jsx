@@ -25,7 +25,7 @@ const DynamicForm = ({ title, inputs, buttonText, onSubmit, error, children }) =
 
                 <Form.Group as={Row} className="mb-3">
                     <Col className="d-flex justify-content-center mt-3">
-                        <Button type="submit" size="lg">
+                        <Button type="submit" size="lg" className='btn-info'>
                             {buttonText}
                         </Button>
                     </Col>
