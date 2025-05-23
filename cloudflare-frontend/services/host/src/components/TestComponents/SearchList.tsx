@@ -19,7 +19,7 @@ export default function SearchList() {
             />
             <ul>
                 {filtered.map((item, idx) => (
-                    <li key={idx}>{item}</li>
+                    <li data-test-id='search_item' key={idx}>{item}</li>
                 ))}
             </ul>
         </Container>
