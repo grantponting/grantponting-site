@@ -17,7 +17,7 @@ jobs:
           java-version: 17
 
       - name: Install dependencies
-        run: npm ci
+        run: cd automation-tests/playwright && npm ci
   
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
