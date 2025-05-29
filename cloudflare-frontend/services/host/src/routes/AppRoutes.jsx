@@ -10,7 +10,7 @@ const UserProfile = lazy(() => import('../pages/UserProfile'));
 const TestService = lazy(() => import('../pages/TestService'));
 const AutomationTest = lazy(() => import('../pages/AutomationTest'));
 const RealEstateTest = lazy(() => import('../pages/real-estate-test/RealEstateTest'));
-const RealEstateGalleryTest = lazy(() => import('../pages/real-estate-test/gallery'));
+const RealEstateGalleryTest = lazy(() => import('../pages/real-estate-test/Gallery'));
 const RealEstatePricesTest = lazy(() => import('../pages/real-estate-test/Prices'));
 const RealEstateReviewsTest = lazy(() => import('../pages/real-estate-test/Reviews'));
 const BookTest = lazy(() => import('../pages/BookTest'));
