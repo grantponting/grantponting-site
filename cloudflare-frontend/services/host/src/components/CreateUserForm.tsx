@@ -33,9 +33,9 @@ const CreateUserForm = () => {
                 throw new Error('Invalid credentials');
             }
 
-            setUser(response.data);
-
             await login({ email: email, password: password });
+
+            setUser(response.data);
         } catch {
             setError('An error occurred while creating the user.');
         }
