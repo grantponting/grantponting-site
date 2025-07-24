@@ -11,14 +11,19 @@ test('Count Feature is Visible', async ({ page }) => {
     let automationTest = new AutomationTest(page);
 
     await expect(automationTest.countText).toBeVisible();
-    await expect(automationTest.incrementButton).toBeVisible();
+
+    // This will fail here to help demonstrate the generateCategores code
+    await expect(automationTest.incrementButton).not.toBeVisible();
+
     await expect(automationTest.decrementButton).toBeVisible();
 });
 
 test('Increment Button works properly', async ({ page }) => {
     let automationTest = new AutomationTest(page);
 
-    await expect(automationTest.countText).toContainText('0');
+    // This will fail here to help demonstrate the generateCategores code
+    await expect(automationTest.countText).not.toContainText('0');
+
     await automationTest.incrementButton.click();
     await expect(automationTest.countText).toContainText('1');
 });
@@ -26,7 +31,9 @@ test('Increment Button works properly', async ({ page }) => {
 test('Decrement Button works properly', async ({ page }) => {
     let automationTest = new AutomationTest(page);
 
-    await expect(automationTest.countText).toContainText('0');
+    // This will fail here to help demonstrate the generateCategores code
+    await expect(automationTest.countText).not.toContainText('0');
+
     await automationTest.decrementButton.click();
     await expect(automationTest.countText).toContainText('-1');
 });

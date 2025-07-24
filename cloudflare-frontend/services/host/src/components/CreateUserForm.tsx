@@ -4,7 +4,6 @@ import DynamicForm from './DynamicForm';
 import ErrorPopUp from './ErrorPopUp';
 import * as api from '../api-client/api';
 import { useAuth } from '../contexts/authContext';
-import { User } from '../api-client/api';
 
 const CreateUserForm = () => {
     const [username, setUsername] = useState('');
@@ -36,7 +35,7 @@ const CreateUserForm = () => {
             } catch {
                 setError('Failed to login');
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             setError('An error occurred while creating the user.');
         }
