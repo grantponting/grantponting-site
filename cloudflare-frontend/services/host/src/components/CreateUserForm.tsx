@@ -11,9 +11,8 @@ const CreateUserForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState<User | null>(null);
     const userApi = api.DefaultApiFactory();
-    const { login } = useAuth();
+    const { user, login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,8 +37,6 @@ const CreateUserForm = () => {
             } catch {
                 setError('Failed to login');
             }
-
-            setUser(response.data);
         } catch {
             setError('An error occurred while creating the user.');
         }
