@@ -17,7 +17,6 @@ const CreateUserForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setUser(null);
 
         try {
             const body: api.PostUserRequest = {
@@ -38,6 +37,7 @@ const CreateUserForm = () => {
                 setError('Failed to login');
             }
         } catch {
+            console.error(err);
             setError('An error occurred while creating the user.');
         }
     };
