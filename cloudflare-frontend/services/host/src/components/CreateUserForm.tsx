@@ -26,8 +26,8 @@ const CreateUserForm = () => {
 
             const response = await userApi.postUser(body);
 
-            if (response.status !== 200) {
-                throw new Error('Invalid credentials');
+            if (response.status < 200 || response.status >= 300) {
+                throw new Error(`Unexpected status code: ${response.status}`);
             }
 
             try {
