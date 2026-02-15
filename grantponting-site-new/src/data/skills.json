@@ -1,0 +1,44 @@
+{
+    "primary": [
+        {
+            "name": "TypeScript"
+        },
+        {
+            "name": "React"
+        },
+        {
+            "name": "Python"
+        },
+        {
+            "name": "SQL"
+        }
+    ],
+    "backend": [
+        {
+            "name": "Hono"
+        },
+        {
+            "name": "Django"
+        },
+        {
+            "name": "Cloudflare Workers"
+        },
+        {
+            "name": "System Design"
+        }
+    ],
+    "infrastructure": [
+        {
+            "name": "Playwright"
+        },
+        {
+            "name": "GitHub Actions"
+        },
+        {
+            "name": "Docker"
+        },
+        {
+            "name": "CI/CD Pipelines"
+        }
+    ]
+}

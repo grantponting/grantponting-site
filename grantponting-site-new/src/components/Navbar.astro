@@ -1,0 +1,102 @@
+---
+
+---
+
+<nav class="navbar">
+    <div class="container navbar-content">
+        <a href="#" class="logo">GP<span class="dot">.</span></a>
+        <div class="links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact" class="btn btn-primary">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 2rem 0; /* Start larger */
+        background: transparent;
+        backdrop-filter: blur(0px);
+        border-bottom: 1px solid transparent;
+        will-change: padding, background-color, backdrop-filter;
+    }
+
+    .navbar.scrolled {
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1rem 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+    }
+
+    .dot {
+        color: var(--accent-primary);
+    }
+
+    .links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .links a:not(.btn) {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .links a:not(.btn):hover {
+        color: var(--accent-primary);
+    }
+
+    @media (max-width: 768px) {
+        .links a:not(.btn) {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+        gsap.to(navbar, {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "100px top",
+                scrub: true,
+            },
+            backgroundColor: "rgba(15, 23, 42, 0.9)",
+            backdropFilter: "blur(12px)",
+            borderBottomColor: "rgba(255, 255, 255, 0.05)",
+            padding: "1rem 0",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+            ease: "none",
+        });
+    }
+</script>

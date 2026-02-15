@@ -1,0 +1,120 @@
+---
+import projectsData from "../data/projects.json";
+---
+
+<section id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            {
+                projectsData.map((project) => (
+                    <div class="project-card glass-card">
+                        <div class="card-header">
+                            <h3>{project.title}</h3>
+                            <div class="links">
+                                <a
+                                    href={project.codeLink}
+                                    class="icon-link"
+                                    aria-label="View Site"
+                                    target="_blank"
+                                >
+                                    Site
+                                </a>
+                            </div>
+                        </div>
+                        <p class="desc">{project.desc}</p>
+                        <div class="details">
+                            <p>{project.details}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+    }
+
+    .links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .icon-link {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .desc {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .details {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid var(--bg-tertiary);
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Use Batch to handle elements individually and reliably
+    ScrollTrigger.batch(".project-card", {
+        onEnter: (batch) => {
+            gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: "power3.out",
+                overwrite: true, // Ensure we take control
+            });
+        },
+        // Also handle when they are already in view on load (refresh)
+        onRefresh: (batch) => {
+            // Only if they are supposed to be visible
+            // But simpler: just let onEnter handle it, ScrollTrigger usually calls onEnter for in-view elements on refresh
+        },
+        start: "top 85%",
+        once: true, // Only animate once
+    });
+
+    // Set initial state via GSAP to prevent CSS conflicts
+    gsap.set(".project-card", {
+        y: 50,
+        opacity: 0,
+    });
+</script>

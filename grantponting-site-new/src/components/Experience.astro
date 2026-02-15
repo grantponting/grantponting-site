@@ -1,0 +1,124 @@
+---
+import experienceData from "../data/experience.json";
+---
+
+<section id="experience">
+    <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+            {
+                experienceData.map((job) => (
+                    <div class="timeline-item">
+                        <div class="timeline-marker" />
+                        <div class="timeline-content glass-card">
+                            <div class="header">
+                                <h3>{job.role}</h3>
+                                <span class="company">@ {job.company}</span>
+                                <span class="period">{job.period}</span>
+                            </div>
+                            <p>{job.desc}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .timeline {
+        position: relative;
+        padding-left: 2rem;
+        border-left: 2px solid var(--bg-tertiary);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: -2.6rem; /* Adjust based on border and padding */
+        top: 1.5rem;
+        width: 1rem;
+        height: 1rem;
+        background: var(--accent-primary);
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px var(--bg-primary);
+    }
+
+    .timeline-content {
+        position: relative;
+    }
+
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .header h3 {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .company {
+        color: var(--accent-secondary);
+        font-weight: 600;
+    }
+
+    .period {
+        margin-left: auto;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    p {
+        color: var(--text-secondary);
+    }
+
+    @media (max-width: 600px) {
+        .header {
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .period {
+            margin-left: 0;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Set initial state
+    gsap.set(".timeline-item", {
+        y: 30,
+        opacity: 0,
+    });
+
+    ScrollTrigger.batch(".timeline-item", {
+        onEnter: (batch) => {
+            gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "power3.out",
+                overwrite: true,
+            });
+        },
+        start: "top 85%",
+        once: true,
+    });
+</script>

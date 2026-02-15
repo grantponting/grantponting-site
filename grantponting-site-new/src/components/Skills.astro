@@ -1,0 +1,124 @@
+---
+import skillsData from "../data/skills.json";
+
+// Mapping icons to class names isn't direct in Astro without a library,
+// so for simplicity in this MVP we might use text or valid ion-icons/font-awesome classes if loaded.
+// Since we used react-icons in the original, we can either use an Astro icon library or just text badges.
+// Let's use clean text badges with category groupings for a modern look.
+---
+
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Primary Stack</h3>
+                <div class="badges">
+                    {
+                        skillsData.primary.map((skill) => (
+                            <span class="badge">{skill.name}</span>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Backend & Architecture</h3>
+                <div class="badges">
+                    {
+                        skillsData.backend.map((skill) => (
+                            <span class="badge">{skill.name}</span>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Automation & Infrastructure</h3>
+                <div class="badges">
+                    {
+                        skillsData.infrastructure.map((skill) => (
+                            <span class="badge">{skill.name}</span>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-category h3 {
+        color: var(--accent-secondary);
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--bg-tertiary);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .badge {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        border: 1px solid var(--bg-tertiary);
+        transition: all var(--transition-fast);
+    }
+
+    .badge:hover {
+        border-color: var(--accent-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const categories = document.querySelectorAll(".skill-category");
+
+    categories.forEach((category) => {
+        // Select badges within this category
+        const badges = category.querySelectorAll(".badge");
+
+        // Set initial state
+        gsap.set(badges, {
+            y: 20,
+            opacity: 0,
+        });
+
+        // Use Batch for reliable staggered reveal
+        ScrollTrigger.batch(badges, {
+            onEnter: (batch) => {
+                gsap.to(batch, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.05,
+                    ease: "back.out(1.7)",
+                    overwrite: true,
+                });
+            },
+            start: "top 90%",
+            once: true,
+        });
+    });
+</script>

@@ -1,0 +1,149 @@
+---
+
+---
+
+<section id="contact">
+    <div class="container">
+        <div class="contact-content">
+            <h2>Let's Connect</h2>
+            <p>
+                I'm always open to discussing new opportunities, testing
+                strategies, or just chatting about the latest in tech.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:grantponting@proton.me" class="minimal-link">
+                    <span class="label">Email</span>
+                    <span class="value">grantponting@proton.me</span>
+                </a>
+                <a href="tel:9518138068" class="minimal-link">
+                    <span class="label">Phone</span>
+                    <span class="value">(951) 813-8068</span>
+                </a>
+                <a
+                    href="https://github.com/grantponting"
+                    target="_blank"
+                    class="minimal-link"
+                >
+                    <span class="label">GitHub</span>
+                    <span class="value">@grantponting</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    #contact {
+        border-bottom: none;
+        padding-bottom: 2rem;
+    }
+
+    .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .contact-content p {
+        color: var(--text-secondary);
+        margin-bottom: 3rem;
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        border-left: none;
+        padding-left: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .minimal-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+        text-decoration: none; /* override global */
+    }
+
+    .minimal-link:hover {
+        color: var(--accent-primary);
+        background: rgba(255, 255, 255, 0.03);
+        transform: translateX(5px);
+    }
+
+    .minimal-link:hover::after {
+        width: 0; /* disable global underline for this specific style if desired, or keep it */
+    }
+
+    .label {
+        font-weight: 600;
+        color: var(--text-primary);
+        min-width: 60px;
+        text-align: right;
+    }
+
+    .value {
+        opacity: 0.8;
+    }
+
+    footer {
+        padding: 2rem 0;
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        border-top: 1px solid var(--bg-secondary);
+        margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .minimal-link {
+            min-width: 300px;
+            justify-content: space-between;
+        }
+        .label {
+            text-align: left;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const links = document.querySelectorAll(".minimal-link");
+
+    if (links.length > 0) {
+        gsap.set(links, {
+            y: 20,
+            opacity: 0,
+        });
+
+        ScrollTrigger.batch(links, {
+            onEnter: (batch) => {
+                gsap.to(batch, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: "back.out(1.7)",
+                    overwrite: true,
+                });
+            },
+            start: "top 90%",
+            once: true,
+        });
+    }
+</script>

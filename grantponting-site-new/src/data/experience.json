@@ -1,0 +1,14 @@
+[
+    {
+        "role": "QA Engineer",
+        "company": "QualityLogic",
+        "period": "Dec 2021 – Present",
+        "desc": "Designed reusable automation architecture for UI, API, and mobile platforms, enabling faster test coverage and maintainable workflows. Integrated automated test suites into CI/CD pipelines to reduce regression risk and increase release confidence. Developed performance and load testing strategies using K6 to validate system behavior under realistic conditions. Built Page Object Model frameworks to simplify future automation work and ensure consistent, maintainable code."
+    },
+    {
+        "role": "Test Technician",
+        "company": "QualityLogic",
+        "period": "Feb 2020 – Dec 2021",
+        "desc": "Conducted manual and exploratory testing with structured reporting to identify systemic issues. Created and maintained test cases in Jira, Zephyr, and Testrail to formalize testing processes. Collaborated with developers to clarify requirements, improving system reliability and reducing recurring defects."
+    }
+]
