@@ -1,10 +1,22 @@
 {
     "primary": [
         {
-            "name": "TypeScript"
+            "name": "Javascript"
+        },
+        {
+            "name": "Typescript"
+        },
+        {
+            "name": "HTML/CSS"
+        },
+        {
+            "name": "Astro"
         },
         {
             "name": "React"
+        },
+        {
+            "name": "htmx"
         },
         {
             "name": "Python"

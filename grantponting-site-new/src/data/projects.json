@@ -1,8 +1,14 @@
 [
   {
     "title": "Client Photography Platform",
-    "codeLink": "https://rephotosbyadina.com/",
+    "siteLink": "https://rephotosbyadina.com/",
     "desc": "Built and deployed a production website for a client, focusing on performance, maintainability, and scalable content management.",
     "details": "Developed a content-driven site tailored to the client’s photography portfolio and desired reviews. Structured the frontend for fast load times and optimized media delivery. The project required translating non-technical requirements into a stable, production-ready implementation."
+  },
+  {
+    "title": "QL Site Tester",
+    "codeLink": "https://github.com/grantponting/qlSiteTester",
+    "desc": "Designed and implemented a Cypress-based end-to-end automation suite to demonstrate engineering capability and transition from manual QA to QA Engineer.",
+    "details": "Built a JavaScript automation project using Cypress to validate core site workflows through real browser execution. Structured tests for clarity and maintainability while configuring dependencies and execution scripts through Node and npm. The project served as a self-driven proof of technical proficiency with modern automation tooling and directly supported a successful role transition into an engineering position."
   }
 ]

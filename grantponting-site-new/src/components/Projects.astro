@@ -12,14 +12,26 @@ import projectsData from "../data/projects.json";
                         <div class="card-header">
                             <h3>{project.title}</h3>
                             <div class="links">
-                                <a
-                                    href={project.codeLink}
-                                    class="icon-link"
-                                    aria-label="View Site"
-                                    target="_blank"
-                                >
-                                    Site
-                                </a>
+                                {project.siteLink && (
+                                    <a
+                                        href={project.siteLink}
+                                        class="icon-link"
+                                        aria-label="View Site"
+                                        target="_blank"
+                                    >
+                                        Site
+                                    </a>
+                                )}
+                                {project.codeLink && (
+                                    <a
+                                        href={project.codeLink}
+                                        class="icon-link"
+                                        aria-label="View Code"
+                                        target="_blank"
+                                    >
+                                        Code
+                                    </a>
+                                )}
                             </div>
                         </div>
                         <p class="desc">{project.desc}</p>
