@@ -1,5 +1,11 @@
 [
   {
+    "role": "Software Developer",
+    "company": "Freelance",
+    "period": "Aug 2025 – Present",
+    "desc": "Designed and developed full-stack web applications using React, Astro, Hono, htmx, TypeScript, and Cloudflare services. Built edge-hosted applications with Cloudflare D1, implemented CI/CD pipelines with GitHub Actions, and delivered production websites focused on performance, maintainability, and scalable architecture."
+  },
+  {
     "role": "QA Automation Engineer / SDET",
     "company": "QualityLogic",
     "period": "Dec 2021 – Present",
@@ -10,11 +16,5 @@
     "company": "QualityLogic",
     "period": "Mar 2020 – Dec 2021",
     "desc": "Performed manual and exploratory testing, authored structured test cases, and collaborated with development teams to identify quality risks and automation opportunities. Supported defect investigation and validation efforts across multiple client projects while contributing to process improvements and testing standards."
-  },
-  {
-    "role": "Software Developer",
-    "company": "Freelance",
-    "period": "Aug 2025 – Present",
-    "desc": "Designed and developed full-stack web applications using React, Astro, Hono, htmx, TypeScript, and Cloudflare services. Built edge-hosted applications with Cloudflare D1, implemented CI/CD pipelines with GitHub Actions, and delivered production websites focused on performance, maintainability, and scalable architecture."
   }
 ]
