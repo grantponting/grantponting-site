@@ -49,7 +49,6 @@
         position: relative;
         z-index: 10;
         max-width: 800px;
-        will-change: transform;
     }
 
     .eyebrow {
@@ -101,7 +100,6 @@
         );
         z-index: 0;
         pointer-events: none;
-        will-change: transform;
     }
 
     @media (max-width: 768px) {
@@ -116,39 +114,12 @@
 </style>
 
 <script>
-    // Reduced particle count restored to original
-    // Canvas Particle Animation — optimised with spatial grid
+    // Canvas Particle Animation — original logic, with IntersectionObserver pause
     const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
     if (canvas) {
         const ctx = canvas.getContext("2d");
         let w = (canvas.width = window.innerWidth);
         let h = (canvas.height = window.innerHeight);
-
-        // Restored to original counts
-        const PARTICLE_COUNT = window.innerWidth < 768 ? 40 : 100;
-        // Reduced connection distance → fewer pairs qualify per frame
-        const CONNECTION_DIST = 120;
-        const CONNECTION_DIST_SQ = CONNECTION_DIST * CONNECTION_DIST;
-
-        // Spatial grid for O(n) neighbour lookup instead of O(n²)
-        const CELL_SIZE = CONNECTION_DIST;
-        let gridCols = 0;
-        let gridRows = 0;
-        let grid: number[][] = [];
-
-        function buildGrid() {
-            gridCols = Math.ceil(w / CELL_SIZE) + 1;
-            gridRows = Math.ceil(h / CELL_SIZE) + 1;
-            grid = Array.from({ length: gridCols * gridRows }, () => []);
-        }
-
-        function clearGrid() {
-            for (let i = 0; i < grid.length; i++) grid[i].length = 0;
-        }
-
-        function cellIndex(cx: number, cy: number) {
-            return cy * gridCols + cx;
-        }
 
         class Particle {
             x: number;
@@ -162,7 +133,7 @@
                 this.y = Math.random() * h;
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 3 + 1; // Thicker particles (1-4px)
             }
 
             update() {
@@ -185,13 +156,13 @@
         }
 
         const particles: Particle[] = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-        buildGrid();
+        const particleCount = window.innerWidth < 768 ? 40 : 100;
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
         let rafId: number;
         let paused = false;
 
-        // Pause animation when hero scrolls out of view — saves CPU/GPU
+        // Pause when hero is off-screen — zero CPU cost while scrolled away
         const observer = new IntersectionObserver(
             (entries) => {
                 paused = !entries[0].isIntersecting;
@@ -200,8 +171,6 @@
             { threshold: 0 },
         );
         observer.observe(canvas);
-
-        ctx!.lineWidth = 1;
 
         function animate() {
             if (!ctx) return;
@@ -213,56 +182,27 @@
 
             ctx.clearRect(0, 0, w, h);
 
-            // --- Populate spatial grid ---
-            clearGrid();
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                const cx = Math.floor(p.x / CELL_SIZE);
-                const cy = Math.floor(p.y / CELL_SIZE);
-                grid[cellIndex(cx, cy)].push(i);
-            }
-
-            // --- Update, draw particles & connections ---
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
+            particles.forEach((p) => {
                 p.update();
                 p.draw();
 
-                // Check only neighbouring grid cells
-                const cx = Math.floor(p.x / CELL_SIZE);
-                const cy = Math.floor(p.y / CELL_SIZE);
+                // Draw connections
+                particles.forEach((p2) => {
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-                for (let dcx = -1; dcx <= 1; dcx++) {
-                    for (let dcy = -1; dcy <= 1; dcy++) {
-                        const nx = cx + dcx;
-                        const ny = cy + dcy;
-                        if (
-                            nx < 0 ||
-                            nx >= gridCols ||
-                            ny < 0 ||
-                            ny >= gridRows
-                        )
-                            continue;
-                        const cell = grid[cellIndex(nx, ny)];
-                        for (let k = 0; k < cell.length; k++) {
-                            const j = cell[k];
-                            if (j <= i) continue; // avoid duplicate pairs
-                            const p2 = particles[j];
-                            const dx = p.x - p2.x;
-                            const dy = p.y - p2.y;
-                            const distSq = dx * dx + dy * dy;
-                            if (distSq < CONNECTION_DIST_SQ) {
-                                const dist = Math.sqrt(distSq);
-                                ctx.strokeStyle = `rgba(56, 189, 248, ${0.2 * (1 - dist / CONNECTION_DIST)})`;
-                                ctx.beginPath();
-                                ctx.moveTo(p.x, p.y);
-                                ctx.lineTo(p2.x, p2.y);
-                                ctx.stroke();
-                            }
-                        }
+                    if (dist < 180) {
+                        // Increased connection distance
+                        ctx!.strokeStyle = `rgba(56, 189, 248, ${0.2 * (1 - dist / 180)})`; // Slightly more visible
+                        ctx!.lineWidth = 1.5; // Thicker lines
+                        ctx!.beginPath();
+                        ctx!.moveTo(p.x, p.y);
+                        ctx!.lineTo(p2.x, p2.y);
+                        ctx!.stroke();
                     }
-                }
-            }
+                });
+            });
 
             rafId = requestAnimationFrame(animate);
         }
@@ -272,7 +212,6 @@
         window.addEventListener("resize", () => {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
-            buildGrid();
         });
     }
 </script>
