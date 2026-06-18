@@ -21,16 +21,23 @@
         top: 0;
         width: 100%;
         z-index: 1000;
-        padding: 2rem 0; /* Start larger */
+        padding: 2rem 0;
         background: transparent;
         backdrop-filter: blur(0px);
         border-bottom: 1px solid transparent;
-        will-change: padding, background-color, backdrop-filter;
+        /* Smooth CSS transitions instead of GSAP scrub */
+        transition:
+            padding 0.3s ease,
+            background 0.3s ease,
+            backdrop-filter 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
     .navbar.scrolled {
         background: rgba(15, 23, 42, 0.9);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         padding: 1rem 0;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -76,27 +83,35 @@
 </style>
 
 <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
+    // Replace GSAP scrub (triggers GPU recomposite every scroll tick) with a
+    // simple scroll listener that toggles a CSS class. The CSS transition
+    // handles the animation — far cheaper than scrub-based GSAP.
     const navbar = document.querySelector(".navbar");
 
     if (navbar) {
-        gsap.to(navbar, {
-            scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "100px top",
-                scrub: true,
+        let ticking = false;
+
+        function updateNavbar() {
+            if (window.scrollY > 50) {
+                navbar!.classList.add("scrolled");
+            } else {
+                navbar!.classList.remove("scrolled");
+            }
+            ticking = false;
+        }
+
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
             },
-            backgroundColor: "rgba(15, 23, 42, 0.9)",
-            backdropFilter: "blur(12px)",
-            borderBottomColor: "rgba(255, 255, 255, 0.05)",
-            padding: "1rem 0",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            ease: "none",
-        });
+            { passive: true },
+        );
+
+        // Run once on load in case user refreshes mid-page
+        updateNavbar();
     }
 </script>
