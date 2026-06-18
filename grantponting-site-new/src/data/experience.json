@@ -1,14 +1,20 @@
 [
-    {
-        "role": "QA Engineer",
-        "company": "QualityLogic",
-        "period": "Dec 2021 – Present",
-        "desc": "Designed reusable automation architecture for UI, API, and mobile platforms, enabling faster test coverage and maintainable workflows. Integrated automated test suites into CI/CD pipelines to reduce regression risk and increase release confidence. Developed performance and load testing strategies using K6 to validate system behavior under realistic conditions. Built Page Object Model frameworks to simplify future automation work and ensure consistent, maintainable code."
-    },
-    {
-        "role": "Test Technician",
-        "company": "QualityLogic",
-        "period": "Feb 2020 – Dec 2021",
-        "desc": "Conducted manual and exploratory testing with structured reporting to identify systemic issues. Created and maintained test cases in Jira, Zephyr, and Testrail to formalize testing processes. Collaborated with developers to clarify requirements, improving system reliability and reducing recurring defects."
-    }
+  {
+    "role": "QA Automation Engineer / SDET",
+    "company": "QualityLogic",
+    "period": "Dec 2021 – Present",
+    "desc": "Delivered automation solutions for enterprise web, mobile, and API platforms using Playwright, Cypress, Pytest, Detox, and K6. Built reusable test frameworks, CI/CD integrations, and parallel execution strategies that improved maintainability, reduced runtime by over 50%, and supported large-scale automated testing initiatives. Developed Python tooling, mentored engineers, and served as a technical liaison for client engagements."
+  },
+  {
+    "role": "Test Technician",
+    "company": "QualityLogic",
+    "period": "Mar 2020 – Dec 2021",
+    "desc": "Performed manual and exploratory testing, authored structured test cases, and collaborated with development teams to identify quality risks and automation opportunities. Supported defect investigation and validation efforts across multiple client projects while contributing to process improvements and testing standards."
+  },
+  {
+    "role": "Software Developer",
+    "company": "Freelance",
+    "period": "Aug 2025 – Present",
+    "desc": "Designed and developed full-stack web applications using React, Astro, Hono, htmx, TypeScript, and Cloudflare services. Built edge-hosted applications with Cloudflare D1, implemented CI/CD pipelines with GitHub Actions, and delivered production websites focused on performance, maintainability, and scalable architecture."
+  }
 ]

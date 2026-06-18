@@ -1,56 +1,56 @@
 {
-    "primary": [
-        {
-            "name": "Javascript"
-        },
-        {
-            "name": "Typescript"
-        },
-        {
-            "name": "HTML/CSS"
-        },
-        {
-            "name": "Astro"
-        },
-        {
-            "name": "React"
-        },
-        {
-            "name": "htmx"
-        },
-        {
-            "name": "Python"
-        },
-        {
-            "name": "SQL"
-        }
-    ],
-    "backend": [
-        {
-            "name": "Hono"
-        },
-        {
-            "name": "Django"
-        },
-        {
-            "name": "Cloudflare Workers"
-        },
-        {
-            "name": "System Design"
-        }
-    ],
-    "infrastructure": [
-        {
-            "name": "Playwright"
-        },
-        {
-            "name": "GitHub Actions"
-        },
-        {
-            "name": "Docker"
-        },
-        {
-            "name": "CI/CD Pipelines"
-        }
-    ]
+  "primary": [
+    {
+      "name": "JavaScript"
+    },
+    {
+      "name": "TypeScript"
+    },
+    {
+      "name": "Python"
+    },
+    {
+      "name": "React"
+    },
+    {
+      "name": "Astro"
+    },
+    {
+      "name": "HTML/CSS"
+    },
+    {
+      "name": "SQL"
+    },
+    {
+      "name": "System Design"
+    }
+  ],
+  "backend": [
+    {
+      "name": "Hono"
+    },
+    {
+      "name": "Django"
+    },
+    {
+      "name": "Cloudflare Workers"
+    },
+    {
+      "name": "Cloudflare D1"
+    }
+  ],
+  "infrastructure": [
+    {
+      "name": "GitHub Actions"
+    },
+    {
+      "name": "Docker"
+    },
+    {
+      "name": "CI/CD"
+    },
+    {
+      "name": "Playwright"
+    }
+  ]
 }
