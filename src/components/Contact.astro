@@ -134,24 +134,30 @@
     const links = document.querySelectorAll(".minimal-link");
 
     if (links.length > 0) {
-        gsap.set(links, {
-            y: 20,
-            opacity: 0,
-        });
+        // Use rAF so the browser has completed layout before GSAP measures
+        // element positions — prevents ScrollTrigger from miscalculating
+        // trigger points and leaving links permanently invisible.
+        requestAnimationFrame(() => {
+            gsap.set(links, { y: 20, opacity: 0 });
 
-        ScrollTrigger.batch(links, {
-            onEnter: (batch) => {
-                gsap.to(batch, {
-                    opacity: 1,
-                    y: 0,
-                    stagger: 0.1,
-                    duration: 0.6,
-                    ease: "back.out(1.7)",
-                    overwrite: true,
-                });
-            },
-            start: "top 90%",
-            once: true,
+            ScrollTrigger.batch(links, {
+                onEnter: (batch) => {
+                    gsap.to(batch, {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.1,
+                        duration: 0.6,
+                        ease: "back.out(1.7)",
+                        overwrite: true,
+                    });
+                },
+                start: "top 90%",
+                once: true,
+            });
+
+            // Refresh after creating triggers so any links already in view
+            // receive their onEnter callback immediately.
+            ScrollTrigger.refresh();
         });
     }
 </script>

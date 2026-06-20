@@ -15,21 +15,23 @@ import projectsData from "../data/projects.json";
                                 {project.siteLink && (
                                     <a
                                         href={project.siteLink}
-                                        class="icon-link"
+                                        class="icon-link icon-link--site"
                                         aria-label="View Site"
                                         target="_blank"
                                     >
-                                        Site
+                                        <span class="link-icon">↗</span>
+                                        <span>Site</span>
                                     </a>
                                 )}
                                 {project.codeLink && (
                                     <a
                                         href={project.codeLink}
-                                        class="icon-link"
+                                        class="icon-link icon-link--code"
                                         aria-label="View Code"
                                         target="_blank"
                                     >
-                                        Code
+                                        <span class="link-icon">{`{ }`}</span>
+                                        <span>Code</span>
                                     </a>
                                 )}
                             </div>
@@ -77,8 +79,54 @@ import projectsData from "../data/projects.json";
     }
 
     .icon-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        border: 1.5px solid;
+        transition: all var(--transition-fast);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .icon-link::after {
+        display: none; /* disable global underline animation */
+    }
+
+    .link-icon {
         font-size: 0.9rem;
-        font-weight: 600;
+        line-height: 1;
+    }
+
+    .icon-link--site {
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+        background: rgba(56, 189, 248, 0.08);
+    }
+
+    .icon-link--site:hover {
+        background: rgba(56, 189, 248, 0.18);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+        transform: translateY(-2px);
+        color: var(--accent-primary);
+    }
+
+    .icon-link--code {
+        color: var(--accent-secondary);
+        border-color: var(--accent-secondary);
+        background: rgba(129, 140, 248, 0.08);
+    }
+
+    .icon-link--code:hover {
+        background: rgba(129, 140, 248, 0.18);
+        box-shadow: 0 0 12px rgba(129, 140, 248, 0.35);
+        transform: translateY(-2px);
+        color: var(--accent-secondary);
     }
 
     .desc {
