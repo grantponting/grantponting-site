@@ -1,20 +1,43 @@
 [
   {
     "role": "Software Developer",
-    "company": "Freelance",
+    "company": "BlackBox Dev Group",
+    "engagement": "Contract",
     "period": "Aug 2025 – Present",
-    "desc": "Designed and developed full-stack web applications using React, Astro, Hono, htmx, TypeScript, and Cloudflare services. Built edge-hosted applications with Cloudflare D1, implemented CI/CD pipelines with GitHub Actions, and delivered production websites focused on performance, maintainability, and scalable architecture."
+    "summary": "Build and ship client-facing full-stack applications with a focus on maintainable architecture, performance, and reliable delivery.",
+    "highlights": [
+      "Design and develop full-stack applications using React, Vite, Astro, Hono, htmx, and TypeScript.",
+      "Build edge-hosted applications on Cloudflare, including serverless persistence with Cloudflare D1.",
+      "Implement GitHub Actions pipelines for automated builds, testing, and deployments.",
+      "Translate non-technical client requirements into responsive, production-ready websites."
+    ],
+    "technologies": ["React", "Astro", "Hono", "Cloudflare", "GitHub Actions"]
   },
   {
     "role": "QA Automation Engineer / SDET",
     "company": "QualityLogic",
+    "engagement": "Full-time",
     "period": "Dec 2021 – Present",
-    "desc": "Delivered automation solutions for enterprise web, mobile, and API platforms using Playwright, Cypress, Pytest, Detox, and K6. Built reusable test frameworks, CI/CD integrations, and parallel execution strategies that improved maintainability, reduced runtime by over 50%, and supported large-scale automated testing initiatives. Developed Python tooling, mentored engineers, and served as a technical liaison for client engagements."
+    "summary": "Deliver quality engineering and automation systems for enterprise web, mobile, API, and performance-testing engagements.",
+    "highlights": [
+      "Led the migration of 1,000+ automated tests from Cypress to Playwright and designed reusable framework architecture.",
+      "Engineered parallel execution strategies that reduced runtime by 50%+ and ran 500+ end-to-end tests in under seven minutes.",
+      "Built automation frameworks with Playwright, Cypress, Pytest, Detox, and K6, integrated through GitHub Actions and Azure DevOps.",
+      "Mentored 15+ engineers and served as a technical liaison for client engagements."
+    ],
+    "technologies": ["Playwright", "Cypress", "Pytest", "Detox", "K6", "Azure DevOps"]
   },
   {
     "role": "Test Technician",
     "company": "QualityLogic",
+    "engagement": "Full-time",
     "period": "Mar 2020 – Dec 2021",
-    "desc": "Performed manual and exploratory testing, authored structured test cases, and collaborated with development teams to identify quality risks and automation opportunities. Supported defect investigation and validation efforts across multiple client projects while contributing to process improvements and testing standards."
+    "summary": "Built the quality-engineering foundation that led to an automation role.",
+    "highlights": [
+      "Conducted manual and exploratory testing across multiple client products.",
+      "Authored structured test cases and partnered with development teams on defect investigation and validation.",
+      "Identified repeatable workflows and quality risks that were strong candidates for automation."
+    ],
+    "technologies": ["Exploratory Testing", "Test Design", "Defect Analysis"]
   }
 ]

@@ -2,38 +2,61 @@
 import "../styles/global.css";
 
 interface Props {
-	title: string;
+    title: string;
+    description?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title,
+    description = "Grant Ponting is a software developer and quality engineer building production web applications, automation frameworks, and reliable delivery systems.",
+} = Astro.props;
+
+const baseURL = Astro.site ?? new URL("https://grantponting.com");
+const canonicalURL = new URL(Astro.url.pathname, baseURL);
+const socialImage = new URL("/og-card.png", baseURL);
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Grant Ponting - Full Stack Developer & QA Engineer"
-		/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Grant Ponting</title>
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		<!-- HTMX -->
-		<script
-			src="https://unpkg.com/htmx.org@1.9.10"
-			integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
-			crossorigin="anonymous"></script>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="author" content="Grant Ponting" />
+        <meta name="theme-color" content="#111315" />
+        <link rel="canonical" href={canonicalURL} />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Grant Ponting — Software Developer and Quality Engineer" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={socialImage} />
+
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Grant Ponting",
+            url: "https://grantponting.com",
+            jobTitle: "Software Developer and Quality Engineer",
+            email: "mailto:grantponting25@gmail.com",
+            sameAs: ["https://github.com/grantponting", "https://www.linkedin.com/in/grant-ponting/"],
+        })} />
+    </head>
+    <body>
+        <a class="skip-link" href="#main-content">Skip to main content</a>
+        <slot />
+    </body>
 </html>

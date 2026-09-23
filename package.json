@@ -6,11 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node --test tests/site-content.test.mjs"
   },
   "dependencies": {
-    "astro": "^5.17.1",
-    "gsap": "^3.14.2",
-    "htmx.org": "^2.0.8"
+    "astro": "^7.3.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

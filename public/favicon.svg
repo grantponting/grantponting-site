@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-label="GP logo">
+  <circle cx="120" cy="120" r="120" fill="#232323"/>
+  <text x="47" y="155" fill="#f7f3ee" font-family="Inter, Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="-6">GP</text>
+  <circle cx="192" cy="149" r="8" fill="#a8c686"/>
+</svg>

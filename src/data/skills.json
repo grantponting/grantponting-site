@@ -1,56 +1,5 @@
 {
-  "primary": [
-    {
-      "name": "JavaScript"
-    },
-    {
-      "name": "TypeScript"
-    },
-    {
-      "name": "Python"
-    },
-    {
-      "name": "React"
-    },
-    {
-      "name": "Astro"
-    },
-    {
-      "name": "HTML/CSS"
-    },
-    {
-      "name": "SQL"
-    },
-    {
-      "name": "System Design"
-    }
-  ],
-  "backend": [
-    {
-      "name": "Hono"
-    },
-    {
-      "name": "Django"
-    },
-    {
-      "name": "Cloudflare Workers"
-    },
-    {
-      "name": "Cloudflare D1"
-    }
-  ],
-  "infrastructure": [
-    {
-      "name": "GitHub Actions"
-    },
-    {
-      "name": "Docker"
-    },
-    {
-      "name": "CI/CD"
-    },
-    {
-      "name": "Playwright"
-    }
-  ]
+  "development": ["JavaScript", "TypeScript", "Python", "React", "Astro", "Hono", "Django", "htmx", "HTML/CSS", "SQL", "MySQL"],
+  "quality": ["Playwright", "Cypress", "Pytest", "Detox", "K6", "API Testing", "Performance Testing", "Exploratory Testing", "Allure"],
+  "delivery": ["Cloudflare Workers", "Cloudflare D1", "GitHub Actions", "Azure DevOps", "Docker", "Git", "CI/CD", "Jira", "Zephyr", "TestRail"]
 }

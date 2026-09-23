@@ -4,21 +4,40 @@ import experienceData from "../data/experience.json";
 
 <section id="experience">
     <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
+        <header class="section-header">
+            <div>
+                <p class="section-kicker">Experience</p>
+                <h2>Shipping software and raising the quality bar.</h2>
+            </div>
+            <p>
+                Current contract development work runs alongside a full-time quality
+                engineering role.
+            </p>
+        </header>
+
+        <div class="experience-list">
             {
                 experienceData.map((job) => (
-                    <div class="timeline-item">
-                        <div class="timeline-marker" />
-                        <div class="timeline-content glass-card">
-                            <div class="header">
-                                <h3>{job.role}</h3>
-                                <span class="company">@ {job.company}</span>
-                                <span class="period">{job.period}</span>
-                            </div>
-                            <p>{job.desc}</p>
+                    <article class="experience-card">
+                        <div class="experience-meta">
+                            <p class="period">{job.period}</p>
+                            <span class="engagement">{job.engagement}</span>
                         </div>
-                    </div>
+
+                        <div class="experience-body">
+                            <header>
+                                <h3>{job.role}</h3>
+                                <p class="company">{job.company}</p>
+                            </header>
+                            <p class="summary">{job.summary}</p>
+                            <ul>
+                                {job.highlights.map((highlight) => <li>{highlight}</li>)}
+                            </ul>
+                            <div class="tech-list" aria-label={`Technologies used at ${job.company}`}>
+                                {job.technologies.map((technology) => <span>{technology}</span>)}
+                            </div>
+                        </div>
+                    </article>
                 ))
             }
         </div>
@@ -26,99 +45,92 @@ import experienceData from "../data/experience.json";
 </section>
 
 <style>
-    .timeline {
-        position: relative;
-        padding-left: 2rem;
-        border-left: 2px solid var(--bg-tertiary);
+    .experience-list {
+        border-top: 1px solid var(--border-strong);
     }
 
-    .timeline-item {
-        position: relative;
-        margin-bottom: 3rem;
+    .experience-card {
+        display: grid;
+        grid-template-columns: minmax(11rem, 0.35fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 6rem);
+        padding: 2.5rem 0;
+        border-bottom: 1px solid var(--border-strong);
     }
 
-    .timeline-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .timeline-marker {
-        position: absolute;
-        left: -2.6rem; /* Adjust based on border and padding */
-        top: 1.5rem;
-        width: 1rem;
-        height: 1rem;
-        background: var(--accent-primary);
-        border-radius: 50%;
-        box-shadow: 0 0 0 4px var(--bg-primary);
-    }
-
-    .timeline-content {
-        position: relative;
-    }
-
-    .header {
+    .experience-meta {
         display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .header h3 {
-        margin: 0;
-        color: var(--text-primary);
-    }
-
-    .company {
-        color: var(--accent-secondary);
-        font-weight: 600;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
     }
 
     .period {
-        margin-left: auto;
         color: var(--text-secondary);
         font-size: 0.9rem;
+        font-weight: 600;
     }
 
-    p {
+    .engagement {
+        padding: 0.3rem 0.55rem;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .experience-body { max-width: 48rem; }
+
+    .experience-body header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.35rem 0.75rem;
+    }
+
+    .experience-body h3 {
+        font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+        letter-spacing: -0.03em;
+    }
+
+    .company { color: var(--accent-primary); font-weight: 600; }
+
+    .summary {
+        margin-top: 0.85rem;
+        color: var(--text-secondary);
+        font-size: 1.03rem;
+    }
+
+    ul {
+        display: grid;
+        gap: 0.7rem;
+        margin: 1.3rem 0 0 1.15rem;
         color: var(--text-secondary);
     }
 
-    @media (max-width: 600px) {
-        .header {
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .period {
-            margin-left: 0;
-        }
+    li { padding-left: 0.35rem; }
+    li::marker { color: var(--accent-primary); }
+
+    .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 1.5rem;
+    }
+
+    .tech-list span {
+        padding: 0.35rem 0.55rem;
+        background: var(--surface-raised);
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+    }
+
+    @media (max-width: 700px) {
+        .experience-card { grid-template-columns: 1fr; gap: 1.25rem; }
+        .experience-meta { flex-direction: row; align-items: center; justify-content: space-between; }
     }
 </style>
-
-<script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Set initial state
-    gsap.set(".timeline-item", {
-        y: 30,
-        opacity: 0,
-    });
-
-    ScrollTrigger.batch(".timeline-item", {
-        onEnter: (batch) => {
-            gsap.to(batch, {
-                opacity: 1,
-                y: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power3.out",
-                overwrite: true,
-            });
-        },
-        start: "top 85%",
-        once: true,
-    });
-</script>

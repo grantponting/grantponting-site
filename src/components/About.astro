@@ -1,36 +1,42 @@
----
-
----
-
 <section id="about">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
+    <div class="container about-grid">
+        <div>
+            <p class="section-kicker">About</p>
+            <h2>Engineering with a quality mindset.</h2>
+        </div>
+        <div class="about-copy">
             <p>
-                I'm a software developer who enjoys building practical, maintainable
-                applications that solve real problems. My experience ranges from
-                full-stack web development and backend services to automation tooling
-                and cloud-based deployments.
+                I’m a software developer and quality engineer. My background in
+                automation shapes how I build software: clear architecture, dependable
+                delivery, and systems that remain maintainable after launch.
             </p>
             <p>
-                After spending years working in quality engineering and automation, I
-                developed a strong appreciation for clean architecture, reliability, and
-                developer experience. That perspective influences how I approach every
-                project—from initial design through deployment and long-term
-                maintenance.
+                I’m comfortable moving from client requirements and interface work to
+                backend services, deployment pipelines, and the tests that protect the
+                complete product.
             </p>
         </div>
     </div>
 </section>
 
 <style>
-    .about-content {
-        max-width: 800px;
-        font-size: 1.125rem;
-        color: var(--text-secondary);
+    .about-grid {
+        display: grid;
+        grid-template-columns: minmax(16rem, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(3rem, 8vw, 8rem);
+        align-items: start;
     }
 
-    .about-content p {
-        margin-bottom: 1.5rem;
+    .about-copy {
+        max-width: 42rem;
+        color: var(--text-secondary);
+        font-size: 1.12rem;
+        line-height: 1.8;
+    }
+
+    .about-copy p + p { margin-top: 1.5rem; }
+
+    @media (max-width: 760px) {
+        .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 </style>
